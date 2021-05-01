@@ -1,14 +1,23 @@
 
 Fred_API_Keys <- toString(as.character(read.table("~/Fred_API_Keys.txt", quote="\"", comment.char="")[1,1]))
 
+
+
+# You can find this also here - https://docs.google.com/spreadsheets/d/1jnqjM0Bb58vrFtxj2E9JCNKYm74d3LigeAMlqrJAEJw/edit#gid=798621230
+Data_Series <- read.csv("Data Collection - Fred.csv")
+
+
+######## Method 1 Using the Fred API #######
 library(fredr)
 fredr_set_key(Fred_API_Keys )
 test <- fredr(
   series_id = "SIPOVGINIARM"
 )
 
-# You can find this also here - https://docs.google.com/spreadsheets/d/1jnqjM0Bb58vrFtxj2E9JCNKYm74d3LigeAMlqrJAEJw/edit#gid=798621230
-Data_Series <- read.csv("Data Collection - Fred.csv")
+######## Method 2 Using Quandl pull the data from Fred Indirectly ####
+library(Quandl)
+rGDP <- Quandl("FRED/SIPOVGINIARM", type="zoo")
+
 
 
 
